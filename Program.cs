@@ -1,10 +1,11 @@
 ﻿using Spectre.Console;
-//using StaticCredentialCheck;
+using System.Xml.Linq;
+using StudentNamespace;
 
 #region StartupTasks
 // Clearscreen and Welcome message using Spectre.Console
 AnsiConsole.Clear();
-AnsiConsole.Write(new Panel("[gray]Challenge 2.1: Switch Ranges, UserID & Password[/]").BorderColor(Color.MediumVioletRed));
+AnsiConsole.Write(new Panel("[gray]Challenge 2: Switch Ranges, Password, Recursion, Stu-Class[/]").BorderColor(Color.MediumVioletRed));
 #endregion
 
 
@@ -89,6 +90,116 @@ if (CredentialCheck.ResetCredentials()) // define credentials for testing Verify
 
 #endregion
 // Challenge 2.2 ///////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+// Challenge 2.3 ///////////////////////////////////////////////////////////////////////
+//
+//          █████                ████  ████                                            ████████      ████████ 
+//         ░░███                ░░███ ░░███                                           ███░░░░███    ███░░░░███
+//  ██████  ░███████    ██████   ░███  ░███   ██████  ████████    ███████  ██████    ░░░    ░███   ░░░    ░███
+// ███░░███ ░███░░███  ░░░░░███  ░███  ░███  ███░░███░░███░░███  ███░░███ ███░░███      ███████       ██████░ 
+//░███ ░░░  ░███ ░███   ███████  ░███  ░███ ░███████  ░███ ░███ ░███ ░███░███████      ███░░░░       ░░░░░░███
+//░███  ███ ░███ ░███  ███░░███  ░███  ░███ ░███░░░   ░███ ░███ ░███ ░███░███░░░      ███      █    ███   ░███
+//░░██████  ████ █████░░████████ █████ █████░░██████  ████ █████░░███████░░██████    ░██████████ ██░░████████ 
+// ░░░░░░  ░░░░ ░░░░░  ░░░░░░░░ ░░░░░ ░░░░░  ░░░░░░  ░░░░ ░░░░░  ░░░░░███ ░░░░░░     ░░░░░░░░░░ ░░  ░░░░░░░░  
+//                                                               ███ ░███                                     
+//                                                              ░░██████                                      
+//                                                               ░░░░░░                                       
+//
+#region Challenge_2_3
+
+AnsiConsole.MarkupLine("\n[bold magenta]Challenge 2.3 - Texture Triangle using Recursion[/]\n\n");
+
+Console.Write("Enter a texture digit: ");
+string myString = Convert.ToString(Console.ReadLine());
+
+string texture = myString.Substring(0, 1);
+
+Console.Write("\nEnter the desired width: ");
+int width = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine();
+PrintTriangle(width);
+
+void PrintTriangle (int number)
+{
+    for (int i = number; i > 0; i--)
+    {
+        Console.Write(texture);
+    }
+    Console.WriteLine();
+    if (number > 1)
+    {
+        PrintTriangle(number - 1);
+    }
+}
+// Write a C# Sharp program that takes a number and a width also a number, as input and then displays a triangle of that width, using that number.
+// Test Data
+// Enter a number: 6
+// Enter the desired width: 6
+// Expected Output:
+
+// 666666
+// 66666
+// 6666
+// 666
+// 66
+// 6
+
+#endregion
+// Challenge 2.3 ///////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+// Challenge 2.4 ///////////////////////////////////////////////////////////////////////
+//
+//          █████                ████  ████                                            ████████     █████ █████ 
+//         ░░███                ░░███ ░░███                                           ███░░░░███   ░░███ ░░███  
+//  ██████  ░███████    ██████   ░███  ░███   ██████  ████████    ███████  ██████    ░░░    ░███    ░███  ░███ █
+// ███░░███ ░███░░███  ░░░░░███  ░███  ░███  ███░░███░░███░░███  ███░░███ ███░░███      ███████     ░███████████
+//░███ ░░░  ░███ ░███   ███████  ░███  ░███ ░███████  ░███ ░███ ░███ ░███░███████      ███░░░░      ░░░░░░░███░█
+//░███  ███ ░███ ░███  ███░░███  ░███  ░███ ░███░░░   ░███ ░███ ░███ ░███░███░░░      ███      █          ░███░ 
+//░░██████  ████ █████░░████████ █████ █████░░██████  ████ █████░░███████░░██████    ░██████████ ██       █████ 
+// ░░░░░░  ░░░░ ░░░░░  ░░░░░░░░ ░░░░░ ░░░░░  ░░░░░░  ░░░░ ░░░░░  ░░░░░███ ░░░░░░     ░░░░░░░░░░ ░░       ░░░░░  
+//                                                               ███ ░███                                       
+//                                                              ░░██████                                        
+//                                                               ░░░░░░                                         
+#region Challenge_2_4
+
+AnsiConsole.MarkupLine("\n[bold magenta]Challenge 2.4 - Student Class Structure[/]\n\n");
+// using StudentNamespace; // included at the top of this file
+
+Student myStudentTestCase = new();  
+
+myStudentTestCase.SetStudentFullName();
+myStudentTestCase.SetRollNumber();
+myStudentTestCase.SetNumberOfClasses();
+myStudentTestCase.SetClasses();
+myStudentTestCase.SetMarks();
+
+myStudentTestCase.GetStudentSummaryData();
+
+#endregion
+// Challenge 2.4 ///////////////////////////////////////////////////////////////////////
+
 
 
 
