@@ -1,6 +1,9 @@
 ﻿using Spectre.Console;
 using System.Xml.Linq;
 using StudentNamespace;
+using System;
+using System.Text;
+
 
 #region StartupTasks
 // Clearscreen and Welcome message using Spectre.Console
@@ -129,9 +132,19 @@ Console.Write("\nEnter the desired width: ");
 int width = Convert.ToInt32(Console.ReadLine());
 
 Console.WriteLine();
-PrintTriangle(width);
 
-void PrintTriangle (int number)
+
+PrintTriangleRecursive(width);   // TESTED, works;  recursive function uses more memory because whenever it calls itself 
+                                 // it copies itself to the stack, therefore, it is better to use the regular for loop
+                                 // It would be educational to demonstrate visually how this works... let me know if you
+                                 // can help with a demo
+
+//PrintTriangleUsingNestedForLoop(width); // UNTESTED, but almost certainly better memory optimization than recursion
+
+//PrintTriangleUsingSingleForLoop(width); // UNTESTED, but almost certainly better memory optimization than nested for loop
+
+//-----------------------------------------------------------
+void PrintTriangleRecursive (int number) // works, but due to recursion, likely not the most efficient memory usage wise, esp in large cases
 {
     for (int i = number; i > 0; i--)
     {
@@ -143,6 +156,33 @@ void PrintTriangle (int number)
         PrintTriangle(number - 1);
     }
 }
+//-----------------------------------------------------------
+void PrintTriangleUsingNestedForLoop (int number) // UNTESTED
+{
+    int lineWidth = number;
+    for (int i = 0; i < number; i++) // repeat for number lines 
+    {
+        for (int j = 0; j > lineWidth; j++) // add character for lineWidth width, decrementing each line
+        {
+            sb.Append(texture);
+        }
+        sb.AppendLine();
+        lineWidth--;
+    }
+    Console.WriteLine(sb.ToString());
+}
+//-----------------------------------------------------------
+void PrintTriangleUsingSingleForLoop () // UNTESTED
+{
+    for (int i = width; i > 0; i--) // 4, 3, 2, 1
+    {
+        sb.Append(texture, i); // ####
+        sb.AppendLine(); // newline
+    }
+    Console.WriteLine(sb.ToString());
+}
+//-----------------------------------------------------------
+
 // Write a C# Sharp program that takes a number and a width also a number, as input and then displays a triangle of that width, using that number.
 // Test Data
 // Enter a number: 6
