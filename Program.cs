@@ -132,17 +132,21 @@ Console.Write("\nEnter the desired width: ");
 int width = Convert.ToInt32(Console.ReadLine());
 
 Console.WriteLine();
-
-
+Console.WriteLine("method 1 - PrintTriangleRecursive");
 PrintTriangleRecursive(width);   // TESTED, works;  recursive function uses more memory because whenever it calls itself 
                                  // it copies itself to the stack, therefore, it is better to use the regular for loop
                                  // It would be educational to demonstrate visually how this works... let me know if you
                                  // can help with a demo
+Console.ReadLine();
+Console.WriteLine();
+Console.WriteLine("method 2 - PrintTriangleUsingNestedForLoop");
+PrintTriangleUsingNestedForLoop(width); // DOES NOT WORK, but almost certainly better memory optimization than recursion
+Console.ReadLine();
 
-//PrintTriangleUsingNestedForLoop(width); // UNTESTED, but almost certainly better memory optimization than recursion
-
-//PrintTriangleUsingSingleForLoop(width); // UNTESTED, but almost certainly better memory optimization than nested for loop
-
+Console.WriteLine();
+Console.WriteLine("method 3 - PrintTriangleUsingSingleForLoop");
+PrintTriangleUsingSingleForLoop(); // works fine, and almost certainly better memory optimization than nested for loop
+Console.ReadLine();
 //-----------------------------------------------------------
 void PrintTriangleRecursive (int number) // works, but due to recursion, likely not the most efficient memory usage wise, esp in large cases
 {
@@ -153,18 +157,20 @@ void PrintTriangleRecursive (int number) // works, but due to recursion, likely 
     Console.WriteLine();
     if (number > 1)
     {
-        PrintTriangle(number - 1);
+        PrintTriangleRecursive(number - 1);
     }
 }
 //-----------------------------------------------------------
 void PrintTriangleUsingNestedForLoop (int number) // UNTESTED
 {
+    StringBuilder sb = new();
     int lineWidth = number;
+    char firstChar = texture[0];
     for (int i = 0; i < number; i++) // repeat for number lines 
     {
         for (int j = 0; j > lineWidth; j++) // add character for lineWidth width, decrementing each line
         {
-            sb.Append(texture);
+            sb.Append(firstChar);
         }
         sb.AppendLine();
         lineWidth--;
@@ -174,9 +180,11 @@ void PrintTriangleUsingNestedForLoop (int number) // UNTESTED
 //-----------------------------------------------------------
 void PrintTriangleUsingSingleForLoop () // UNTESTED
 {
+    StringBuilder sb = new();
+    char firstChar = texture[0];
     for (int i = width; i > 0; i--) // 4, 3, 2, 1
     {
-        sb.Append(texture, i); // ####
+        sb.Append(firstChar, i); // #### // appends the quantity of characters as well 
         sb.AppendLine(); // newline
     }
     Console.WriteLine(sb.ToString());
